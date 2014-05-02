@@ -1,0 +1,21 @@
+#!/bin/bash
+
+RED='\033[00;31m'
+RESTORE='\033[0m'
+GREEN='\033[00;32m'
+
+for dir in ./cases/*
+do
+  output=`phpunit --stop-on-failure $dir`
+
+  if [[ $output =~ "OK" ]]
+  then
+      echo -e ${GREEN}testing $(basename $dir): Ok
+  else
+      echo -e ${RED}testing $(basename $dir): Failed!
+      echo "$output"
+  fi
+
+done
+
+echo -e ${RESTORE}
