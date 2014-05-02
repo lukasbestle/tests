@@ -1,0 +1,1 @@
+<?php echo html($page->title()) ?>
