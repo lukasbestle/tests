@@ -6,7 +6,7 @@ GREEN='\033[00;32m'
 
 for dir in ./cases/*
 do
-  output=`phpunit --stop-on-failure $dir`
+  output=`phpunit $dir`
 
   if [[ $output =~ "OK" ]]
   then
