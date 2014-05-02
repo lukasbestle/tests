@@ -14,10 +14,11 @@ You must have the latest version PHPUnit installed in order to run tests.
 git clone --recursive https://github.com/getkirby/tests.git
 ```
 
-Also make sure that the test bash script is executable:
+Also make sure that the test and update bash scripts are executable:
 
 ```
 chmod +x test
+chmod +x update
 ```
 
 ## Running tests
@@ -25,3 +26,13 @@ chmod +x test
 ```
 ./test
 ```
+
+## Updating Kirby
+
+To make it easier to update the testdrive's Kirby installation, use the included update bash script:
+
+```
+./update
+```
+
+It will fetch the latest versions of the Kirby core and Toolkit from Github

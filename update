@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cd kirby
+git checkout master
+git pull
+
+cd toolkit
+git checkout master
+git pull
