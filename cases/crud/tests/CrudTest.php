@@ -196,4 +196,23 @@ class CrudTest extends PHPUnit_Framework_TestCase {
 
   }
 
+  /**
+   * A visible page must stay visible
+   * after it has been moved to a new folder
+   */
+  public function testMoveVisible() {
+
+    $newPage = $this->buildDummyPage();
+    $newPage->sort(5);
+    $this->assertEquals('a', $newPage->uid());
+
+    $newPage->move('b');
+    $this->assertEquals(5, $newPage->num());
+    $this->assertEquals('b', $newPage->uid());
+    $this->assertTrue($newPage->isVisible());
+
+    $newPage->delete();
+
+  }
+
 }
