@@ -6,12 +6,13 @@ class TagsTest extends PHPUnit_Framework_TestCase {
 
   protected function setUp() {
 
-    $site = kirby::setup(array(
+    $this->site = kirby::setup(array(
       'root.content' => root('test.content'),
-      'root.site'    => root('test.site')
+      'root.site'    => root('test.site'),
+      'url'          => 'http://getkirby.com'
     ));
 
-    $site->visit('/');
+    $this->site->visit('/');
 
   }
 
@@ -40,7 +41,52 @@ class TagsTest extends PHPUnit_Framework_TestCase {
   }
 
   public function testImage() {
-    // TODO: needs a test image
+
+    // go to the project page which contains the image
+    $this->site->visit('projects/project-a');
+
+    // create the image tag
+    $image = kirbytag(array(
+      'image' => 'project-a.jpg'
+    ));
+
+    $this->assertEquals('<img src="http://getkirby.com/content/02-projects/01-project-a/project-a.jpg" alt="project-a" />', (string)$image);
+
+    // with alt text
+    $image = kirbytag(array(
+      'image' => 'project-a.jpg',
+      'alt'   => 'Project A'
+    ));
+
+    $this->assertEquals('<img src="http://getkirby.com/content/02-projects/01-project-a/project-a.jpg" alt="Project A" />', (string)$image);
+
+    // with link
+    $image = kirbytag(array(
+      'image' => 'project-a.jpg',
+      'alt'   => 'Project A',
+      'link'  => 'http://google.com'
+    ));
+
+    $this->assertEquals('<a href="http://google.com"><img src="http://getkirby.com/content/02-projects/01-project-a/project-a.jpg" alt="Project A" /></a>', (string)$image);
+
+    // with self referential link
+    $image = kirbytag(array(
+      'image' => 'project-a.jpg',
+      'alt'   => 'Project A',
+      'link'  => 'project-a.jpg'
+    ));
+
+    $this->assertEquals('<a href="http://getkirby.com/content/02-projects/01-project-a/project-a.jpg"><img src="http://getkirby.com/content/02-projects/01-project-a/project-a.jpg" alt="Project A" /></a>', (string)$image);
+
+    // with self referential link version two
+    $image = kirbytag(array(
+      'image' => 'project-a.jpg',
+      'alt'   => 'Project A',
+      'link'  => 'self'
+    ));
+
+    $this->assertEquals('<a href="http://getkirby.com/content/02-projects/01-project-a/project-a.jpg"><img src="http://getkirby.com/content/02-projects/01-project-a/project-a.jpg" alt="Project A" /></a>', (string)$image);
+
   }
 
   public function testLink() {
