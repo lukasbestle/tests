@@ -77,7 +77,7 @@ class CrudTest extends PHPUnit_Framework_TestCase {
 
     $home = page('home');
 
-    $this->setExpectedException('Exception', 'The home page cannot be deleted');
+    $this->setExpectedException('Exception', 'The page cannot be deleted');
     $home->delete();
 
   }
@@ -86,14 +86,14 @@ class CrudTest extends PHPUnit_Framework_TestCase {
 
     $error = page('error');
 
-    $this->setExpectedException('Exception', 'The error page cannot be deleted');
+    $this->setExpectedException('Exception', 'The page cannot be deleted');
     $error->delete();
 
   }
 
   public function testDeleteSite() {
 
-    $this->setExpectedException('Exception', 'The site cannot be deleted');
+    $this->setExpectedException('Exception', 'The page cannot be deleted');
     site()->delete();
 
   }

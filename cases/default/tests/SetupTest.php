@@ -42,7 +42,6 @@ class SetupTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals($root . DS . 'site' . DS . 'tags', $site->options['root.tags']);
     $this->assertEquals($root . DS . 'site' . DS . 'plugins', $site->options['root.plugins']);
     $this->assertEquals($root . DS . 'site' . DS . 'accounts', $site->options['root.accounts']);
-    $this->assertEquals($root . DS . 'site' . DS . 'blueprints', $site->options['root.blueprints']);
     $this->assertEquals($root . DS . 'site' . DS . 'snippets', $site->options['root.snippets']);
     $this->assertEquals($root . DS . 'site' . DS . 'templates', $site->options['root.templates']);
 
